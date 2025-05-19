@@ -1,4 +1,4 @@
-﻿FROM golang:1.24
+﻿FROM golang:1.24 AS builder
 
 WORKDIR /app
 
@@ -8,8 +8,13 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o /app/build/fizzbuzz
+RUN go build -o fizzbuzz
+
+FROM scratch
+
+COPY --from=builder /app/fizzbuzz /fizzbuzz
+COPY --from=builder /app/templates /templates
 
 EXPOSE 8080
 
-CMD ["/app/build/fizzbuzz", "serve"]
+ENTRYPOINT ["/fizzbuzz", "serve"]
