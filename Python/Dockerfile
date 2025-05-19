@@ -2,9 +2,11 @@ FROM python:3.10.17-bullseye
 
 WORKDIR /app
 
-COPY . .
+COPY requirements/backend.txt ./requirements/
 
 RUN pip install --no-cache-dir -r requirements/backend.txt
+
+COPY . .
 
 EXPOSE 8080
 
