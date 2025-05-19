@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o fizzbuzz
+RUN CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' -o fizzbuzz
 
 FROM scratch
 
