@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.ApplyMigrations();
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Are you ready?");
 app.UseUserEndPoints();
 
 app.Run();
